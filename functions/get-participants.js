@@ -1,21 +1,22 @@
-const { Octokit } = require("@octokit/rest");
-const owner = 'milg15';
-const repo = 'zoom-sorteo';
+const { Octokit } = require("@octokit/rest"),
+      owner = 'milg15',
+      repo = 'zoom-sorteo';
 
 exports.handler = async (event) => {
   try {
-    const octokit = new Octokit({auth:'f4d72cf034a9c5f4005e027c0b9e0bad26699285'});
-    if(false) {
+    const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
+
+    if(!event.body) {
       return { 
           statusCode: 500, 
-          body: JSON.stringify(octokit)
+          body: 'Title and link are required.'
       };
     }
-    //const body = JSON.parse(event.body);
-    const newItem = {};
+    const body = JSON.parse(event.body);
+    const newItem = {"test": "testing"};
 
-    newItem.title = 'https://sorteos.netlify.app/';
-    newItem.link = 'https://sorteos.netlify.app/';
+    /*newItem.title = body.title;
+    newItem.link = body.link;
     if(!newItem.title) {
         return { 
             statusCode: 500, 
@@ -27,8 +28,8 @@ exports.handler = async (event) => {
             statusCode: 500, 
             body: 'link parameter required' 
         };
-    }
-    let path = 'links.json';
+    }*/
+    let path = 'crr_users.json';
     return octokit.repos.getContent({
       owner,
       repo,
