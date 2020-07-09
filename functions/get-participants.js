@@ -4,7 +4,7 @@ const { Octokit } = require("@octokit/rest"),
 
 exports.handler = async (event, context) => {
   try {
-    const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
+    const octokit = new Octokit({auth:'6ea908ba1e58e3f2b47fc1b1f620435deaca534b'});
     
     if(!event.body) {
       return { 
@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
     const newParticipant = body.payload
     
-    let path = 'crr_users.json';
+    let path = './functions/data/crr_users.json';
     return octokit.repos.getContent({
       owner,
       repo,

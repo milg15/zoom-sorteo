@@ -13,19 +13,11 @@
 
         <main>
         <h1>¿Quien ganara?</h1>
-        <div class="participants"></div>
+        <ul id="participants">
 
-        <template id="participants">
-            <div class="participant">
-                <img src="" alt="" />
-                
-                <h2>name</h2>
-            </div>
-        </template>
-        <script type="module">
-            import { loadParticipantes } from './js/load-participants.js';
-            loadParticipantes();
-        </script>
+        </ul>
+
+        <script src="./js/load-participants.js"></script>
         <button>Sorteo!</button>
         </main>
     </body>
