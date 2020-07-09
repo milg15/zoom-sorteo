@@ -4,7 +4,7 @@ const { Octokit } = require("@octokit/rest"),
 
 exports.handler = async (event) => {
   try {
-    const octokit = new Octokit({auth:'57bab71f6cfe98ad6c1e9f5888102f2b858d8b21'});
+    const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
 
     if(!event.body) {
       return { 
