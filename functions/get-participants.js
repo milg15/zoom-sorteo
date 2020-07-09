@@ -2,7 +2,7 @@ const { Octokit } = require("@octokit/rest"),
       owner = 'milg15',
       repo = 'zoom-sorteo';
 
-exports.handler = async (event) => {
+exports.handler = async (event, context, callback) => {
   try {
     const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
 
