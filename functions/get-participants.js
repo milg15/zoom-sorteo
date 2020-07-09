@@ -14,12 +14,6 @@ exports.handler = async (event) => {
     }
     const body = JSON.parse(event.body);
     const newParticipant = body.payload.object
-    if(event.body) {
-      return { 
-          statusCode: 200, 
-          body: newParticipant
-      };
-    }
     /*newItem.title = body.title;
     newItem.link = body.link;
     if(!newItem.title) {
@@ -47,7 +41,7 @@ exports.handler = async (event) => {
       let message = 'Updated users';
       let content = '';
       let sha = res.data.sha;
-      //usersJSON.users.push(newItem);
+      usersJSON.users.push(newParticipant);
       usersRaw = JSON.stringify(usersJSON);
       buff = Buffer.from(usersRaw);
       content = buff.toString('base64');
