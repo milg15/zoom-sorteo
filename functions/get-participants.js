@@ -5,7 +5,10 @@ const { Octokit } = require("@octokit/rest"),
 exports.handler = async (event, context) => {
   try {
     const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
-
+    return { 
+      statusCode: 500, 
+      body: process.env.GITHUB_TOKEN.toString()
+  };
     if(!event.body) {
       return { 
           statusCode: 500, 
