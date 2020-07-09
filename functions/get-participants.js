@@ -4,17 +4,22 @@ const { Octokit } = require("@octokit/rest"),
 
 exports.handler = async (event) => {
   try {
-    const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
+    const octokit = new Octokit({auth:'b9dcf08361494eac8c1bec81c0376a1b6de83b6a'});
 
     if(!event.body) {
       return { 
           statusCode: 500, 
-          body: 'Title and link are required.'
+          body: 'Information has to be sent.'
       };
     }
     const body = JSON.parse(event.body);
-    const newItem = {"test": "testing"};
-
+    const newParticipant = body.payload.object
+    if(event.body) {
+      return { 
+          statusCode: 200, 
+          body: newParticipant
+      };
+    }
     /*newItem.title = body.title;
     newItem.link = body.link;
     if(!newItem.title) {
@@ -37,16 +42,16 @@ exports.handler = async (event) => {
     }).then(res => {
       console.log(res);
       let buff = Buffer.from(res.data.content, 'base64');
-      let linksRaw = buff.toString('utf-8');
-      let linksJSON = JSON.parse(linksRaw);
-      let message = 'Updated links';
+      let usersRaw = buff.toString('utf-8');
+      let usersJSON = JSON.parse(linksRaw);
+      let message = 'Updated users';
       let content = '';
       let sha = res.data.sha;
-      linksJSON.links.push(newItem);
-      linksRaw = JSON.stringify(linksJSON);
-      buff = Buffer.from(linksRaw);
+      //usersJSON.users.push(newItem);
+      usersRaw = JSON.stringify(usersJSON);
+      buff = Buffer.from(usersRaw);
       content = buff.toString('base64');
-      return octokit.repos.createOrUpdateFile({
+      return octokit.repos.createOrUpdateFileContents({
         owner,
         repo,
         path,
