@@ -4,7 +4,7 @@ const { Octokit } = require("@octokit/rest"),
 
 exports.handler = async (event) => {
   try {
-    const octokit = new Octokit({auth:'b9dcf08361494eac8c1bec81c0376a1b6de83b6a'});
+    const octokit = new Octokit({auth:'57bab71f6cfe98ad6c1e9f5888102f2b858d8b21'});
 
     if(!event.body) {
       return { 
@@ -13,21 +13,8 @@ exports.handler = async (event) => {
       };
     }
     const body = JSON.parse(event.body);
-    const newParticipant = body.payload.object
-    /*newItem.title = body.title;
-    newItem.link = body.link;
-    if(!newItem.title) {
-        return { 
-            statusCode: 500, 
-            body: 'title parameter required' 
-        };
-    }
-    if(!newItem.link) {
-        return { 
-            statusCode: 500, 
-            body: 'link parameter required' 
-        };
-    }*/
+    const newParticipant = body.payload
+    
     let path = 'crr_users.json';
     return octokit.repos.getContent({
       owner,
@@ -37,7 +24,7 @@ exports.handler = async (event) => {
       console.log(res);
       let buff = Buffer.from(res.data.content, 'base64');
       let usersRaw = buff.toString('utf-8');
-      let usersJSON = JSON.parse(linksRaw);
+      let usersJSON = JSON.parse(usersRaw);
       let message = 'Updated users';
       let content = '';
       let sha = res.data.sha;
