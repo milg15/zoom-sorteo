@@ -5,11 +5,21 @@ async function loadParticipantes() {
       .catch((err) => console.error(err));
 
     let lis = '';
-    console.log(data)
+    const idUsers = [];
     data.users.forEach(element=>{
-        lis += '<li>' + JSON.stringify(element)+ '</li>';
+        let obj = element.object
+        if("participant" in obj){
+          console.log(obj)
+          let user = obj.participant
+          if (!idUsers.includes(user.user_id)){
+            idUsers.push(user.user_id)
+            lis += '<li>' + user.user_name+ '</li>';
+          }
+      }
     });
-    parte.innerHTML = lis;
+    const container = document.querySelector('#participants');
+
+    container.innerHTML = lis;
 }
 
 loadParticipantes();
