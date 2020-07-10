@@ -17,7 +17,8 @@ exports.handler = async (event, context) => {
         { data: { testField: 'testValue' } }
       )
     )
-    
+    console.log("prueba fauna!")
+
     if(!event.body) {
       return { 
           statusCode: 500, 
