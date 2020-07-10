@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@octokit/rest": "^18.0.0"
+    "@octokit/rest": "^18.0.0",
+    "faunadb": "^2.14.2"
   }
 }

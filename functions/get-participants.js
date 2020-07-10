@@ -2,9 +2,21 @@ const { Octokit } = require("@octokit/rest"),
       owner = 'milg15',
       repo = 'zoom-sorteo';
 
+const { Faunadb } = require('faunadb'),
+  q = faunadb.query
+
+
 exports.handler = async (event, context) => {
   try {
     const octokit = new Octokit({auth:process.env.GITHUB_TOKEN});
+    var client = new faunadb.Client({ secret: process.env.FAUNA_SECRET })
+
+    var createP = client.query(
+      q.Create(
+        q.Collection('test'),
+        { data: { testField: 'testValue' } }
+      )
+    )
     
     if(!event.body) {
       return { 
