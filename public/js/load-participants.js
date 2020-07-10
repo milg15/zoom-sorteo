@@ -1,3 +1,7 @@
+function borrarParticipante(el){
+  var element = document.getElementById(`name${el}`);
+  element.remove();
+}
 
 async function loadParticipantes() {
     const data = await fetch('/.netlify/functions/send-participants')
@@ -6,20 +10,23 @@ async function loadParticipantes() {
 
     let lis = '';
     const idUsers = [];
-    data.users.forEach(element=>{
+    let id = 0;
+    data.users.forEach((element)=>{
         let obj = element.object
         if("participant" in obj){
-          console.log(obj)
           let user = obj.participant
           if (!idUsers.includes(user.user_id)){
             idUsers.push(user.user_id)
-            lis += '<li>' + user.user_name+ '</li>';
-          }
+            lis += `<li id="name${id}">${user.user_name} <span class="borrar" onclick="borrarParticipante(${id})">-</span></li>`;
+            id+=1;
+          }  
       }
     });
     const container = document.querySelector('#participants');
 
     container.innerHTML = lis;
 }
+
+
 
 loadParticipantes();

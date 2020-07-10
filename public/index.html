@@ -3,22 +3,29 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Zoom + Netlify Functions!</title>
+        <title>Sorteos con Zoom!</title>
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
+        
         <header>
-        <a href="/" rel="home">Serverless Workflow for Zoom</a>
+        <a href="/" rel="home">Sorteos Rena Ware</a>
         </header>
+        <div id="celebrate" class="">
+            <div class="before"></div>
+            <div class="after"></div>
+        </div>
+        <div class="content">
+            <main>
+                <h1>¿Quien ganara?</h1>
+                <ul id="participants"></ul>
+    
+                <script src="./js/load-participants.js"></script>
+                <button id="Button">Sorteo!</button>
+                <script src="./js/sorteo.js"></script>
 
-        <main>
-        <h1>¿Quien ganara?</h1>
-        <ul id="participants">
-
-        </ul>
-
-        <script src="./js/load-participants.js"></script>
-        <button>Sorteo!</button>
-        </main>
+            </main>
+            <h1 id="winner"></h1>
+        </div>
     </body>
 </html>
